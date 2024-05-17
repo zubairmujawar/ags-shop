@@ -117,37 +117,34 @@
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
                       </svg>
-                    </div> <!-- /.icon -->
+                    </div> 
                     <div class="service-contents">
                       <p>+91 7020083904</p>
-                    </div> <!-- /.service-contents-->
-                  </div> <!-- /.service -->
+                    </div>
+                  </div> 
                 </div>
               </div>
 
               <form>
                 <div class="row">
-                  <div class="col-8">
-                    <div class="form-group">
-                      <label class="text-black" for="fname">First name</label>
-                      <input type="text" class="form-control" id="fname">
+                  <div class="col-14">
+					  <div class="form-group">
+						  <input type="hidden" name="access_key" value="b4ebb577-7950-4d35-861d-5a4c51b5fb3e">
+						  <label class="text-black" for="fname">First name</label>
+                      <input type="text" class="form-control" id="fname" required placeholder="Name">
                     </div>
                   </div>
                   <div class="col-6">
-                    <!-- <div class="form-group">
-                      <label class="text-black" for="lname">Last name</label>
-                      <input type="text" class="form-control" id="lname">
-                    </div> -->
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="text-black" for="email">Email address</label>
-                  <input type="email" class="form-control" id="email">
+                  <label class="text-black" for="email" required>Email address</label>
+                  <input type="email" class="form-control" id="email" placeholder="Email">
                 </div>
 
-                <div class="form-group mb-5">
-                  <label class="text-black" for="message">Message</label>
-                  <textarea name="" class="form-control" id="message" cols="30" rows="5"></textarea>
+                <div class="form-group mb-5" required>
+                  <label class="text-black" for="message" >Message</label>
+                  <textarea name="" class="form-control" id="message" cols="30" rows="5" placeholder="Message"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary-hover-outline">Send Message</button>
@@ -165,10 +162,7 @@
     </div>
   </div>
 
-  <!-- End Contact Form -->
-
-		
-
+  <!-- End Contact Form -->	
 		<!-- Start Footer Section -->
 		<footer class="footer-section">
 			<div class="container relative">
@@ -219,7 +213,8 @@
 					<a class="navbar-brand bg-green" href="index.html"><img src="./images/logo.png" alt="AGS" class="logoImg"></a>
 				  </div>
 				  <p class="mb-4">
-					Experience the convenience of fast and free shipping on all orders. Your dream furniture delivered straight to your door step.
+					Opp Margosa Heights Apartment, Mohammadwadi, Hadapsar, Pune,
+                  Maharashtra 411028
 				  </p>
 	  
 				  <ul class="list-unstyled custom-social">
@@ -305,8 +300,48 @@
 			</div>
 		  </footer>
 		<!-- End Footer Section -->	
+		<script>
+			const form = document.getElementById('form');
+			const result = document.getElementById('result');
+			
+			form.addEventListener('submit', function(e) {
+			  e.preventDefault();
+			  const formData = new FormData(form);
+			  const object = Object.fromEntries(formData);
+			  const json = JSON.stringify(object);
+			  result.innerHTML = "Please wait..."
+			
+				fetch('https://api.web3forms.com/submit', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'Accept': 'application/json'
+						},
+						body: json
+					})
+					.then(async (response) => {
+						let json = await response.json();
+						if (response.status == 200) {
+							result.innerHTML = "Form submitted successfully";
+						} else {
+							console.log(response);
+							result.innerHTML = json.message;
+						}
+					})
+					.catch(error => {
+						console.log(error);
+						result.innerHTML = "Something went wrong!";
+					})
+					.then(function() {
+						form.reset();
+						setTimeout(() => {
+							result.style.display = "none";
+						}, 3000);
+					});
+			});
+			</script>
 
-
+		<script src="https://web3forms.com/client/script.js" async defer></script>
 		<script src="js/bootstrap.bundle.min.js"></script>
 		<script src="js/tiny-slider.js"></script>
 		<script src="js/custom.js"></script>

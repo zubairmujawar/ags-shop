@@ -36,7 +36,7 @@ a.more {
 }
 
 .custom-navbar {
-  background: #173a2d !important;
+  background: #07363C !important;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -119,9 +119,11 @@ a.more {
 .custom-navbar .custom-navbar-cta li:first-child {
   margin-right: 20px;
 }
-
+.logoImg{
+  width: 80px;
+}
 .hero {
-  background: #112c22;
+  background: #0d4e56;
   padding: calc(4rem - 30px) 0 0rem 0;
 }
 @media (min-width: 768px) {
@@ -205,7 +207,10 @@ a.more {
     top: -40px;
   }
 }
-
+.bg-green{
+  background-color: #07363C;
+  padding: 15px;
+}
 .btn {
   font-weight: 600;
   padding: 12px 30px;

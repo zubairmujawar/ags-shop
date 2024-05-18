@@ -208,8 +208,11 @@ a.more {
   }
 }
 .bg-green{
-  background-color: #07363C;
+  color: #07363C;
   padding: 15px;
+  /* font-weight: 500; */
+  font-weight: bold;
+  font-size: 2rem;
 }
 .btn {
   font-weight: 600;
